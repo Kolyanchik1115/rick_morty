@@ -16,7 +16,7 @@ class CharacterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(
+      appBar: SearchBar(
         hintText: 'Найти персонажа',
       ),
     );

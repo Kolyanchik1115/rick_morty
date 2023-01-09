@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class SearchBar extends StatelessWidget with PreferredSizeWidget {
   final String hintText;
 
-  const CustomAppBar({
+  const SearchBar({
     Key? key,
     required this.hintText,
   }) : super(key: key);
