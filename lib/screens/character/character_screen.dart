@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty/widgets/search_bar.dart';
 
 class CharacterScreen extends StatelessWidget {
   const CharacterScreen({super.key});
@@ -15,7 +16,9 @@ class CharacterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text('Characters')),
+      appBar: CustomAppBar(
+        hintText: 'Найти персонажа',
+      ),
     );
   }
 }

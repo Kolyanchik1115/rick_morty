@@ -12,11 +12,10 @@ ThemeData theme() {
     textTheme: textTheme(),
   );
 }
-
 TextTheme textTheme() {
   return const TextTheme(
     displayLarge: TextStyle(
-      color: Colors.white,
+      color: Color(0xff5B6975),
       fontSize: 16,
       fontWeight: FontWeight.bold,
     ),
