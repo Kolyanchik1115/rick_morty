@@ -31,16 +31,16 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: const BoxDecoration(
                     border: Border(
-                      left: BorderSide(
-                        color: Color(0xff5B6975),
-                        width: 0.6
-                      ),
+                      left: BorderSide(color: Color(0xff5B6975), width: 0.6),
                     ),
                   ),
-                  child: const Icon(
-                    BoxIcons.bx_filter_alt,
-                    size: 26,
-                    color: Color(0xff5B6975),
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      BoxIcons.bx_filter_alt,
+                      size: 26,
+                      color: Color(0xff5B6975),
+                    ),
                   ),
                 ),
                 prefixIcon: const Icon(
