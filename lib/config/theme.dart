@@ -12,6 +12,7 @@ ThemeData theme() {
     textTheme: textTheme(),
   );
 }
+
 TextTheme textTheme() {
   return const TextTheme(
     displayLarge: TextStyle(
@@ -20,8 +21,8 @@ TextTheme textTheme() {
       fontWeight: FontWeight.bold,
     ),
     displayMedium: TextStyle(
-      color: Colors.blueAccent,
-      fontSize: 12,
+      color: Color(0xff5B6975),
+      fontSize: 18,
       fontWeight: FontWeight.bold,
     ),
     titleLarge: TextStyle(
@@ -30,7 +31,7 @@ TextTheme textTheme() {
       fontWeight: FontWeight.bold,
     ),
     bodySmall: TextStyle(
-      color: Colors.black,
+      color: Color(0xff5B6975),
       fontSize: 14,
       fontWeight: FontWeight.normal,
     ),

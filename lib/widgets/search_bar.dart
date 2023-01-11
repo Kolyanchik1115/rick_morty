@@ -25,7 +25,7 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
                 fillColor:
                     Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                 hintText: hintText,
-                hintStyle: Theme.of(context).textTheme.displayLarge,
+                hintStyle: Theme.of(context).textTheme.displayMedium,
                 suffixIcon: Container(
                   margin: const EdgeInsets.all(10.0),
                   padding: const EdgeInsets.symmetric(horizontal: 8),
