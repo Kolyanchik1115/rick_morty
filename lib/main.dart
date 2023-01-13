@@ -19,29 +19,20 @@ class MyApp extends StatelessWidget {
       title: 'Rick and Morty',
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      home: MultiRepositoryProvider(
+      home: MultiBlocProvider(
         providers: [
-          RepositoryProvider(
-            create: (context) => CharacterRepo(),
+          BlocProvider(
+            create: (context) => CharacterBloc(
+              characterRepo: CharacterRepo(),
+            ),
           ),
         ],
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => CharacterBloc(
-                characterRepo: context.read<CharacterRepo>(),
-              )..add(
-                  const CharacterEventFetch(page: 1),
-                ),
-            ),
-          ],
-          child: MaterialApp(
-            title: 'Rick and Morty',
-            debugShowCheckedModeBanner: false,
-            theme: theme(),
-            onGenerateRoute: AppRouter.onGenerationRoute,
-            initialRoute: HomeScreen.routeName,
-          ),
+        child: MaterialApp(
+          title: 'Rick and Morty',
+          debugShowCheckedModeBanner: false,
+          theme: theme(),
+          onGenerateRoute: AppRouter.onGenerationRoute,
+          initialRoute: HomeScreen.routeName,
         ),
       ),
     );

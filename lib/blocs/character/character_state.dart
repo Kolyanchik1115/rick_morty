@@ -7,17 +7,7 @@ abstract class CharacterState extends Equatable {
   List<Object> get props => [];
 }
 
-class CharacterInitialize extends CharacterState {}
-
-class CharacterLoading extends CharacterState {
-  final List<Character> characterLoading;
-  final bool isFirstFetch;
-
-  const CharacterLoading(
-    this.characterLoading, {
-    this.isFirstFetch = false,
-  });
-}
+class CharacterLoading extends CharacterState {}
 
 class CharacterLoaded extends CharacterState {
   final Character characterLoaded;
