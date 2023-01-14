@@ -36,11 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: IndexedStack(
         index: _selectedTab,
-        children: const [
+        children:  [
           CharacterScreen(),
-          LocationScreen(),
-          EpisodeScreen(),
-          SettingsScreen(),
+          const LocationScreen(),
+          const EpisodeScreen(),
+          const SettingsScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

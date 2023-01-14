@@ -7,11 +7,4 @@ abstract class CharacterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CharacterEventFetch extends CharacterEvent {
-  final int page;
-  const CharacterEventFetch({
-    required this.page,
-  });
-  @override
-  List<Object> get props => [page];
-}
+class CharacterEventFetch extends CharacterEvent {}

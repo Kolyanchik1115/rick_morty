@@ -22,10 +22,9 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => CharacterBloc(
-              characterRepo: CharacterRepo(),
-            ),
-          ),
+              create: (context) => CharacterBloc(
+                    characterRepo: CharacterRepo(),
+                  )..add(CharacterEventFetch())),
         ],
         child: MaterialApp(
           title: 'Rick and Morty',
