@@ -26,13 +26,18 @@ TextTheme textTheme() {
       fontWeight: FontWeight.bold,
     ),
     titleLarge: TextStyle(
-      color: Colors.blueAccent,
-      fontSize: 10,
+      color: Colors.white,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
     bodySmall: TextStyle(
       color: Color(0xff5B6975),
       fontSize: 14,
+      fontWeight: FontWeight.normal,
+    ),
+    bodyMedium: TextStyle(
+      color: Color(0xff5B6975),
+      fontSize: 16,
       fontWeight: FontWeight.normal,
     ),
   );

@@ -5,6 +5,7 @@ import 'package:rick_morty/config/app_router.dart';
 import 'package:rick_morty/config/theme.dart';
 import 'package:rick_morty/data/repositories/character_repo.dart';
 import 'package:rick_morty/screens/home/home_screen.dart';
+import 'package:rick_morty/screens/settings/settings_screen.dart';
 
 void main() async {
   runApp(const MyApp());

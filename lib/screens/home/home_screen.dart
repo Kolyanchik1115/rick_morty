@@ -3,7 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:rick_morty/screens/character/character_screen.dart';
 import 'package:rick_morty/screens/episode/episode.dart';
 import 'package:rick_morty/screens/location/location.dart';
-import 'package:rick_morty/screens/settings/settings.dart';
+import 'package:rick_morty/screens/settings/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: IndexedStack(
         index: _selectedTab,
-        children:  [
+        children: [
           CharacterScreen(),
           const LocationScreen(),
           const EpisodeScreen(),
