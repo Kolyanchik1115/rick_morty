@@ -145,42 +145,64 @@ class ThemeWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Icon(
-              BoxIcons.bx_palette,
-              size: 35,
-              color: Colors.white,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, bottom: 5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      child: Text(
-                        'Темная тема',
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayLarge!
-                            .copyWith(color: Colors.white),
-                      )),
-                  const SizedBox(
-                    height: 5,
+        InkWell(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(
+                    'Темная тема',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  Row(
-                    children: const [
-                      Text('Включена'),
-                    ],
-                  )
-                ],
+                  content: Text(
+                    'Темная тема',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  actions: [
+                    ListView()
+                  ],
+                );
+              },
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Icon(
+                BoxIcons.bx_palette,
+                size: 35,
+                color: Colors.white,
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(left: 20, bottom: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        child: Text(
+                          'Темная тема',
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(color: Colors.white),
+                        )),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: const [
+                        Text('Включена'),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

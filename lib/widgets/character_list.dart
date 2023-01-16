@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_morty/data/models/character.dart';
 import 'package:rick_morty/widgets/character_status.dart';
@@ -18,15 +19,10 @@ class CharacterList extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: Colors.transparent,
-              foregroundImage: NetworkImage(result.image),
+              foregroundImage: CachedNetworkImageProvider(
+                result.image,
+              ),
               radius: 40,
-              // child: CachedNetworkImage(
-              //   imageUrl: result.image,
-              //   placeholder: (context, url) => const CircularProgressIndicator(
-              //     color: Colors.grey,
-              //   ),
-              //   errorWidget: (context, url, error) => const Icon(Icons.error),
-              // ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 5),
