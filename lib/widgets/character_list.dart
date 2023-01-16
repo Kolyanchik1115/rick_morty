@@ -4,7 +4,7 @@ import 'package:rick_morty/data/models/character.dart';
 import 'package:rick_morty/widgets/character_status.dart';
 
 class CharacterList extends StatelessWidget {
-  final Results result;
+  final Character result;
   const CharacterList({Key? key, required this.result}) : super(key: key);
 
   @override

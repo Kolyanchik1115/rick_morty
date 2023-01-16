@@ -6,7 +6,7 @@ import 'package:rick_morty/widgets/character_list.dart';
 import 'package:rick_morty/widgets/search_bar.dart';
 
 class CharacterScreen extends StatelessWidget {
-  final List<Results> _results = [];
+  final List<Character> _results = [];
 
   final ScrollController _scrollController = ScrollController();
   static const String routeName = '/';
@@ -33,7 +33,7 @@ class CharacterScreen extends StatelessWidget {
               return const CircularProgressIndicator();
             }
             if (state is CharacterLoaded) {
-              _results.addAll(state.characterLoaded.results);
+              _results.addAll(state.characterLoaded);
             }
             if (state is CharacterError && _results.isEmpty) {
               return Column(
