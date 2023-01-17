@@ -4,15 +4,6 @@ import 'package:icons_plus/icons_plus.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static const String routeName = '/settings';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (context) => const SettingsScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,9 +150,7 @@ class ThemeWidget extends StatelessWidget {
                     'Темная тема',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  actions: [
-                    ListView()
-                  ],
+                  actions: [ListView()],
                 );
               },
             );

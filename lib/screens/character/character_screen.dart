@@ -9,16 +9,8 @@ class CharacterScreen extends StatelessWidget {
   final List<Character> _results = [];
 
   final ScrollController _scrollController = ScrollController();
-  static const String routeName = '/';
 
   CharacterScreen({super.key});
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (context) => CharacterScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
