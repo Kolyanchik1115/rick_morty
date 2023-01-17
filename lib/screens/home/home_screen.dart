@@ -18,7 +18,6 @@ class RootScreen extends StatelessWidget {
           return BottomNavigationBar(
             currentIndex: state.index,
             type: BottomNavigationBarType.fixed,
-            showUnselectedLabels: false,
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(
