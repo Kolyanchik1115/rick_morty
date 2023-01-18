@@ -16,4 +16,16 @@ class CharacterRepo {
       throw Exception(e.toString());
     }
   }
+
+  Future<List<Character>> searchCharacter(String query) async {
+    try {
+      var response = await http.get(Uri.parse('$url?name=$query'));
+      var jsonResult = json.decode(response.body);
+      return (jsonResult['results'] as List)
+          .map((json) => Character.fromJson(json))
+          .toList();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

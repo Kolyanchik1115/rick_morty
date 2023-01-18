@@ -13,6 +13,26 @@ ThemeData darkTheme() {
   );
 }
 
+ThemeData searchTheme() {
+  return ThemeData(
+    scaffoldBackgroundColor: const Color(0xff0B1E2D),
+    appBarTheme: const AppBarTheme(
+      color: Color(0xff0B1E2D),
+    ),
+    primaryIconTheme: const IconThemeData(color: Colors.white),
+    dividerTheme: const DividerThemeData(
+      color: Colors.transparent,
+    ),
+    brightness: Brightness.dark,
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Colors.white,
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: InputBorder.none,
+    ),
+  );
+}
+
 // ThemeData lightTheme() {
 //   return ThemeData(
 //     scaffoldBackgroundColor: Colors.white,

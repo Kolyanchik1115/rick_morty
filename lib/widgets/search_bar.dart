@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:rick_morty/widgets/custom_search.dart';
 
 class SearchBar extends StatelessWidget with PreferredSizeWidget {
   final String hintText;
@@ -19,7 +20,12 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
         children: [
           Expanded(
             child: TextField(
+              showCursor: false,
+              onTap: () {
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
               decoration: InputDecoration(
+                
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
                 fillColor:
