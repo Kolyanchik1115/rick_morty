@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Rick and Morty',
       debugShowCheckedModeBanner: false,
-      theme: theme(),
+      theme: darkTheme(),
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Rick and Morty',
           debugShowCheckedModeBanner: false,
-          theme: theme(),
+          theme: darkTheme(),
           home: const RootScreen(),
         ),
       ),

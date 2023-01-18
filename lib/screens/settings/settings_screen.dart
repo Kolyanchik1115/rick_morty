@@ -138,22 +138,12 @@ class ThemeWidget extends StatelessWidget {
         const SizedBox(height: 30),
         InkWell(
           onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text(
-                    'Темная тема',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  content: Text(
-                    'Темная тема',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  actions: [ListView()],
-                );
-              },
-            );
+            // showDialog(
+            //   context: context,
+            //   builder: (BuildContext context) {
+            //     return const AlertWidget();
+            //   },
+            // );
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

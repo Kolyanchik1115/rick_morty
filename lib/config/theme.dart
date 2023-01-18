@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-ThemeData theme() {
+ThemeData darkTheme() {
   return ThemeData(
     scaffoldBackgroundColor: const Color(0xff0B1E2D),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -12,6 +12,19 @@ ThemeData theme() {
     textTheme: textTheme(),
   );
 }
+
+// ThemeData lightTheme() {
+//   return ThemeData(
+//     scaffoldBackgroundColor: Colors.white,
+//     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+//       backgroundColor: Colors.blueAccent,
+//       selectedItemColor: Colors.blueAccent,
+//       unselectedItemColor: Color(0xff5B6975),
+//     ),
+//     fontFamily: 'Roboto',
+//     textTheme: textTheme(),
+//   );
+// }
 
 TextTheme textTheme() {
   return const TextTheme(
