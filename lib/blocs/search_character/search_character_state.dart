@@ -19,3 +19,5 @@ class PersonSearchLoaded extends SearchCharacterState {
   @override
   List<Object> get props => [persons];
 }
+
+class SearchError extends SearchCharacterState {}

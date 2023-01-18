@@ -17,9 +17,9 @@ class CharacterRepo {
     }
   }
 
-  Future<List<Character>> searchCharacter(String query) async {
+  Future<List<Character>> searchCharacter(int page, String query) async {
     try {
-      var response = await http.get(Uri.parse('$url?name=$query'));
+      var response = await http.get(Uri.parse('$url?page=$page&name=$query'));
       var jsonResult = json.decode(response.body);
       return (jsonResult['results'] as List)
           .map((json) => Character.fromJson(json))

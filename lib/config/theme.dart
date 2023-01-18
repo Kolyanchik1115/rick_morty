@@ -30,6 +30,7 @@ ThemeData searchTheme() {
     inputDecorationTheme: const InputDecorationTheme(
       border: InputBorder.none,
     ),
+    textTheme: textTheme(),
   );
 }
 

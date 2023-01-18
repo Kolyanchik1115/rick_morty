@@ -8,18 +8,25 @@ part 'search_character_state.dart';
 
 class SearchCharacterBloc
     extends Bloc<SearchCharacterEvent, SearchCharacterState> {
+  int page = 1;
   final CharacterRepo searchPerson;
 
   SearchCharacterBloc({required this.searchPerson})
       : super(SearchCharacterEmpty()) {
-    on<SearchPersons>(_onEvent);
+    on<SearchPersons>(_onSearchPersons);
   }
-
-  Future<void> _onEvent(
-      SearchPersons event, Emitter<SearchCharacterState> emit) async {
-    emit(PersonSearchLoading());
-    final failureOrPerson =
-        await searchPerson.searchCharacter(event.personQuery);
-    emit(PersonSearchLoaded(persons: failureOrPerson));
+  Future<void> _onSearchPersons(
+    SearchPersons event,
+    Emitter<SearchCharacterState> emit,
+  ) async {
+    try {
+      final searchPersons = await searchPerson
+          .searchCharacter(page, event.personQuery)
+          .timeout(const Duration(seconds: 3));
+      emit(PersonSearchLoaded(persons: searchPersons));
+      page++;
+    } catch (_) {
+      emit(SearchError());
+    }
   }
 }

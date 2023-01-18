@@ -3,10 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/blocs/search_character/search_character_bloc.dart';
 import 'package:rick_morty/config/theme.dart';
 import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/widgets/search_result.dart';
+import 'package:rick_morty/widgets/character_list.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
+
+  final List<Character> _results = [];
+
+  final ScrollController _scrollController = ScrollController();
 
   final _suggestions = [
     'Rick',
@@ -45,8 +49,9 @@ class CustomSearchDelegate extends SearchDelegate {
             child: CircularProgressIndicator(),
           );
         } else if (state is PersonSearchLoaded) {
-          final person = state.persons;
-          if (person.isEmpty) {
+          _results.addAll(state.persons);
+
+          if (_results.isEmpty) {
             return const Text(
               'No Characters with that name found',
               style: TextStyle(
@@ -56,16 +61,21 @@ class CustomSearchDelegate extends SearchDelegate {
             );
           }
           return ListView.builder(
-            itemCount: person.isNotEmpty ? person.length : 0,
+            controller: _scrollController
+              ..addListener(() {
+                if (_scrollController.offset ==
+                    _scrollController.position.maxScrollExtent) {
+                  context.read<SearchCharacterBloc>().add(SearchPersons(query));
+                }
+              }),
+            itemCount: _results.isNotEmpty ? _results.length : 0,
             itemBuilder: (context, int index) {
-              Character result = person[index];
-              return SearchResult(personResult: result);
+              Character result = _results[index];
+              return CharacterList(result: result);
             },
           );
         } else {
-          return const Center(
-            child: Icon(Icons.now_wallpaper),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );
