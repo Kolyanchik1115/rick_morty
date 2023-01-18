@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/blocs/character/character_bloc.dart';
+import 'package:rick_morty/blocs/character_bloc/character/character_bloc.dart';
 import 'package:rick_morty/data/models/character.dart';
 import 'package:rick_morty/widgets/character_list.dart';
 import 'package:rick_morty/widgets/search_bar.dart';

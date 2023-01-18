@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/blocs/character/character_bloc.dart';
+import 'package:rick_morty/blocs/character_bloc/character/character_bloc.dart';
+import 'package:rick_morty/blocs/character_bloc/search_character/search_character_bloc.dart';
 import 'package:rick_morty/blocs/navigation/navigation_bloc.dart';
-import 'package:rick_morty/blocs/search_character/search_character_bloc.dart';
 import 'package:rick_morty/config/theme.dart';
 import 'package:rick_morty/data/repositories/character_repo.dart';
 import 'package:rick_morty/screens/home/home_screen.dart';

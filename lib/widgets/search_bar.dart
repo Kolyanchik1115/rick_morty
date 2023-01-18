@@ -22,10 +22,12 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
             child: TextField(
               showCursor: false,
               onTap: () {
-                showSearch(context: context, delegate: CustomSearchDelegate());
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(),
+                );
               },
               decoration: InputDecoration(
-                
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
                 fillColor:
