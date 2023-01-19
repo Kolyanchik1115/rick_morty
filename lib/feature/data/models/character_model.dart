@@ -1,3 +1,4 @@
+import 'package:rick_morty/feature/data/models/location_model.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 
 class CharacterModel extends CharacterEntity {
@@ -8,6 +9,8 @@ class CharacterModel extends CharacterEntity {
     required species,
     required type,
     required gender,
+    required origin,
+    required location,
     required image,
     required episode,
     required created,
@@ -18,6 +21,8 @@ class CharacterModel extends CharacterEntity {
           species: species,
           type: type,
           gender: gender,
+          origin: origin,
+          location: location,
           image: image,
           episode: episode,
           created: created,
@@ -31,6 +36,12 @@ class CharacterModel extends CharacterEntity {
       species: json['species'] as String,
       type: json['type'] as String,
       gender: json['gender'] as String,
+      origin: json['origin'] != null
+          ? LocationModel.fromJson(json['origin'])
+          : null,
+      location: json['location'] != null
+          ? LocationModel.fromJson(json['location'])
+          : null,
       image: json['image'] as String,
       episode:
           (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
@@ -46,6 +57,8 @@ class CharacterModel extends CharacterEntity {
       'species': species,
       'type': type,
       'gender': gender,
+      'origin': origin,
+      'location': location,
       'image': image,
       'episode': episode,
       'created': created.toIso8601String(),
