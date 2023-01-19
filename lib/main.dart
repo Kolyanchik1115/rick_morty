@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/blocs/character_bloc/character/character_bloc.dart';
-import 'package:rick_morty/blocs/character_bloc/search_character/search_character_bloc.dart';
-import 'package:rick_morty/blocs/navigation/navigation_bloc.dart';
-import 'package:rick_morty/config/theme.dart';
-import 'package:rick_morty/data/repositories/character_repo.dart';
-import 'package:rick_morty/screens/home/home_screen.dart';
+import 'package:rick_morty/common/theme.dart';
+import 'package:rick_morty/feature/presentation/blocs/character_bloc/character/character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/character_bloc/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
+import 'package:rick_morty/locator_service.dart' as di;
+import 'package:rick_morty/feature/presentation/screens/home/home_screen.dart';
+
+import 'locator_service.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  di.init();
   runApp(const MyApp());
 }
 
@@ -23,16 +27,13 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => CharacterBloc(
-              characterRepo: CharacterRepo(),
-            )..add(CharacterEventFetch()),
+            create: (context) => sl<SearchCharacterBloc>(),
           ),
-          BlocProvider(create: (context) => NavigationBloc()),
           BlocProvider(
-            create: (context) => SearchCharacterBloc(
-              searchPerson: CharacterRepo(),
-            ),
+            create: (context) =>
+                sl<CharacterBloc>()..add(CharacterEventFetch()),
           ),
+          BlocProvider(create: (context) => sl<NavigationBloc>()),
         ],
         child: MaterialApp(
           title: 'Rick and Morty',

@@ -1,16 +1,14 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:equatable/equatable.dart';
 
-part 'character.g.dart';
-
-@JsonSerializable()
-class Character {
+class CharacterEntity extends Equatable {
   final int id;
   final String name;
   final String status;
   final String species;
   final String gender;
   final String image;
-  Character({
+  
+  const CharacterEntity({
     required this.id,
     required this.name,
     required this.status,
@@ -19,7 +17,8 @@ class Character {
     required this.image,
   });
 
-  factory Character.fromJson(Map<String, dynamic> json) =>
-      _$CharacterFromJson(json);
-  Map<String, dynamic> toJson() => _$CharacterToJson(this);
+  @override
+  List<Object> get props {
+    return [id, name, status, species, gender, image];
+  }
 }

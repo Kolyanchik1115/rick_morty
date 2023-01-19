@@ -12,7 +12,7 @@ class SearchCharacterEmpty extends SearchCharacterState {}
 class PersonSearchLoading extends SearchCharacterState {}
 
 class PersonSearchLoaded extends SearchCharacterState {
-  final List<Character> persons;
+  final List<CharacterEntity> persons;
 
   const PersonSearchLoaded({required this.persons});
 

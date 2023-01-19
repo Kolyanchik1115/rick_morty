@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/data/repositories/character_repo.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/feature/domain/usecases/get_character.dart';
 
 part 'character_event.dart';
 part 'character_state.dart';
 
 class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
-  final CharacterRepo characterRepo;
+  final GetCharacter characterRepo;
   int page = 1;
   CharacterBloc({
     required this.characterRepo,
@@ -20,7 +20,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     Emitter<CharacterState> emit,
   ) async {
     try {
-      final characterLoaded = await characterRepo
+      final characterLoaded = await characterRepo.characterRepository
           .getCharacter(page)
           .timeout(const Duration(seconds: 3));
       emit(CharacterLoaded(characterLoaded: characterLoaded));

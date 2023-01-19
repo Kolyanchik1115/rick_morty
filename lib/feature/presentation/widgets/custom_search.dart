@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/blocs/character_bloc/search_character/search_character_bloc.dart';
-import 'package:rick_morty/config/theme.dart';
-import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/widgets/character_list.dart';
-
+import 'package:rick_morty/common/theme.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/feature/presentation/blocs/character_bloc/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
-
-  final List<Character> _results = [];
-
-  final ScrollController _scrollController = ScrollController();
 
   final _suggestions = [
     'Rick',
@@ -34,14 +29,17 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: const Icon(Icons.arrow_back_outlined),
-        tooltip: 'Back',
-        onPressed: () => close(context, null));
+      icon: const Icon(Icons.arrow_back_outlined),
+      tooltip: 'Back',
+      onPressed: () {
+        close(context, null);
+      },
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    context.read<SearchCharacterBloc>().add(SearchPersons(query));
+    context.read<SearchCharacterBloc>().add(SearchCharacters(query));
     return BlocBuilder<SearchCharacterBloc, SearchCharacterState>(
       builder: (context, state) {
         if (state is PersonSearchLoading) {
@@ -49,9 +47,8 @@ class CustomSearchDelegate extends SearchDelegate {
             child: CircularProgressIndicator(),
           );
         } else if (state is PersonSearchLoaded) {
-          _results.addAll(state.persons);
-
-          if (_results.isEmpty) {
+          final res = state.persons;
+          if (res.isEmpty) {
             return const Text(
               'No Characters with that name found',
               style: TextStyle(
@@ -61,16 +58,9 @@ class CustomSearchDelegate extends SearchDelegate {
             );
           }
           return ListView.builder(
-            controller: _scrollController
-              ..addListener(() {
-                if (_scrollController.offset ==
-                    _scrollController.position.maxScrollExtent) {
-                  context.read<SearchCharacterBloc>().add(SearchPersons(query));
-                }
-              }),
-            itemCount: _results.isNotEmpty ? _results.length : 0,
+            itemCount: res.isNotEmpty ? res.length : 0,
             itemBuilder: (context, int index) {
-              Character result = _results[index];
+              CharacterEntity result = res[index];
               return CharacterList(result: result);
             },
           );

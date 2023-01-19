@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/widgets/character_status.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/feature/presentation/widgets/character_status.dart';
 
 class CharacterList extends StatelessWidget {
-  final Character result;
+  final CharacterEntity result;
   const CharacterList({Key? key, required this.result}) : super(key: key);
 
   @override

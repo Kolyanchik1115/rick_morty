@@ -7,8 +7,8 @@ abstract class SearchCharacterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchPersons extends SearchCharacterEvent {
+class SearchCharacters extends SearchCharacterEvent {
   final String personQuery;
 
-  const SearchPersons(this.personQuery);
+  const SearchCharacters(this.personQuery);
 }

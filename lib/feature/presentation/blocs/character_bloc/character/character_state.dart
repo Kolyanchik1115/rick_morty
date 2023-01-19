@@ -10,7 +10,7 @@ abstract class CharacterState extends Equatable {
 class CharacterLoading extends CharacterState {}
 
 class CharacterLoaded extends CharacterState {
-  final List<Character> characterLoaded;
+  final List<CharacterEntity> characterLoaded;
   const CharacterLoaded({
     required this.characterLoaded,
   });

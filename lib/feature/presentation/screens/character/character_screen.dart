@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/blocs/character_bloc/character/character_bloc.dart';
-import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/widgets/character_list.dart';
-import 'package:rick_morty/widgets/search_bar.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/feature/presentation/blocs/character_bloc/character/character_bloc.dart';
+import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
 
 class CharacterScreen extends StatelessWidget {
-  final List<Character> _results = [];
+  final List<CharacterEntity> _results = [];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -27,24 +27,7 @@ class CharacterScreen extends StatelessWidget {
             if (state is CharacterLoaded) {
               _results.addAll(state.characterLoaded);
             }
-            if (state is CharacterError && _results.isEmpty) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      context.read<CharacterBloc>().add(CharacterEventFetch());
-                    },
-                    icon: const Icon(
-                      Icons.refresh,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                ],
-              );
-            }
+            
             return ListView.builder(
               controller: _scrollController
                 ..addListener(() {

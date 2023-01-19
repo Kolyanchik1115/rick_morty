@@ -1,30 +1,27 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/data/models/character.dart';
-import 'package:rick_morty/data/repositories/character_repo.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/feature/domain/usecases/search_character.dart';
 
 part 'search_character_event.dart';
 part 'search_character_state.dart';
 
 class SearchCharacterBloc
     extends Bloc<SearchCharacterEvent, SearchCharacterState> {
-  int page = 1;
-  final CharacterRepo searchPerson;
+  final SearchAllCharacter searchCharacter;
 
-  SearchCharacterBloc({required this.searchPerson})
+  SearchCharacterBloc({required this.searchCharacter})
       : super(SearchCharacterEmpty()) {
-    on<SearchPersons>(_onSearchPersons);
+    on<SearchCharacters>(_onSearchPersons);
   }
   Future<void> _onSearchPersons(
-    SearchPersons event,
+    SearchCharacters event,
     Emitter<SearchCharacterState> emit,
   ) async {
     try {
-      final searchPersons = await searchPerson
-          .searchCharacter(page, event.personQuery)
+      final searchPersons = await searchCharacter( event.personQuery)
           .timeout(const Duration(seconds: 3));
       emit(PersonSearchLoaded(persons: searchPersons));
-      page++;
     } catch (_) {
       emit(SearchError());
     }

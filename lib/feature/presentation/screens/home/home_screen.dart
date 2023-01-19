@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:rick_morty/blocs/navigation/navigation_bloc.dart';
-import 'package:rick_morty/screens/character/character_screen.dart';
-import 'package:rick_morty/screens/episode/episode.dart';
-import 'package:rick_morty/screens/location/location.dart';
-import 'package:rick_morty/screens/settings/settings_screen.dart';
+import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
+import 'package:rick_morty/feature/presentation/screens/character/character_screen.dart';
+import 'package:rick_morty/feature/presentation/screens/episode/episode.dart';
+import 'package:rick_morty/feature/presentation/screens/location/location.dart';
+import 'package:rick_morty/feature/presentation/screens/settings/settings_screen.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});

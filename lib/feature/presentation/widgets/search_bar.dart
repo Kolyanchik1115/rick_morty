@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:rick_morty/widgets/custom_search.dart';
+import 'package:rick_morty/feature/presentation/widgets/custom_search.dart';
 
 class SearchBar extends StatelessWidget with PreferredSizeWidget {
   final String hintText;
