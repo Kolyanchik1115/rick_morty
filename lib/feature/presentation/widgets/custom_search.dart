@@ -4,6 +4,7 @@ import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/character_bloc/search_character/search_character_bloc.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
 
@@ -46,17 +47,9 @@ class CustomSearchDelegate extends SearchDelegate {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is PersonSearchLoaded) {
+        }
+        if (state is PersonSearchLoaded) {
           final res = state.persons;
-          if (res.isEmpty) {
-            return const Text(
-              'No Characters with that name found',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          }
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,
             itemBuilder: (context, int index) {
@@ -67,6 +60,10 @@ class CustomSearchDelegate extends SearchDelegate {
         } else {
           return const Center(child: CircularProgressIndicator());
         }
+        // Text(
+        //     'No Characters with that name found',
+        //     style: Theme.of(context).textTheme.bodyLarge,
+        //   );
       },
     );
   }

@@ -59,7 +59,8 @@ class CharacterDetailPage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            if (character.type.isNotEmpty) ...buildText('Type:', character.type),
+            if (character.type.isNotEmpty)
+              ...buildText('Type:', character.type),
             ...buildText('Gender:', character.gender),
             ...buildText(
                 'Number of episodes: ', character.episode.length.toString()),

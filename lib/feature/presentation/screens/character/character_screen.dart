@@ -3,20 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/character_bloc/character/character_bloc.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/custom_search.dart';
 import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
 
 class CharacterScreen extends StatelessWidget {
-  final List<CharacterEntity> _results = [];
-
   final ScrollController _scrollController = ScrollController();
 
   CharacterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<CharacterEntity> results = [];
+
     return Scaffold(
-      appBar: const SearchBar(
+      appBar: SearchBar(
         hintText: 'Найти персонажа',
+        delegate: CustomSearchDelegate(),
       ),
       body: Center(
         child: BlocBuilder<CharacterBloc, CharacterState>(
@@ -25,9 +27,9 @@ class CharacterScreen extends StatelessWidget {
               return const CircularProgressIndicator();
             }
             if (state is CharacterLoaded) {
-              _results.addAll(state.characterLoaded);
+              results.addAll(state.characterLoaded);
             }
-            
+
             return ListView.builder(
               controller: _scrollController
                 ..addListener(() {
@@ -37,8 +39,8 @@ class CharacterScreen extends StatelessWidget {
                   }
                 }),
               itemBuilder: (context, index) =>
-                  CharacterList(result: _results[index]),
-              itemCount: _results.length,
+                  CharacterList(result: results[index]),
+              itemCount: results.length,
             );
           },
         ),

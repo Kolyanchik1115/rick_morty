@@ -20,9 +20,8 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     Emitter<CharacterState> emit,
   ) async {
     try {
-      final characterLoaded = await characterRepo.characterRepository
-          .getCharacter(page)
-          .timeout(const Duration(seconds: 3));
+      final characterLoaded =
+          await characterRepo(page).timeout(const Duration(seconds: 3));
       emit(CharacterLoaded(characterLoaded: characterLoaded));
       page++;
     } catch (_) {

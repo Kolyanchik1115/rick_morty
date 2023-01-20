@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:rick_morty/feature/presentation/widgets/custom_search.dart';
 
 class SearchBar extends StatelessWidget with PreferredSizeWidget {
   final String hintText;
+  final SearchDelegate delegate;
 
   const SearchBar({
     Key? key,
     required this.hintText,
+    required this.delegate,
   }) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
               onTap: () {
                 showSearch(
                   context: context,
-                  delegate: CustomSearchDelegate(),
+                  delegate: delegate,
                 );
               },
               decoration: InputDecoration(

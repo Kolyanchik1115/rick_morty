@@ -17,7 +17,7 @@ Future<void> init() async {
 
   ///Use case
   sl.registerLazySingleton(() => GetCharacter(sl()));
-  sl.registerLazySingleton(() => SearchAllCharacter(sl()));
+  sl.registerLazySingleton(() => SearchCharacter(sl()));
 
   ///Repository
   sl.registerLazySingleton<CharacterRepository>(

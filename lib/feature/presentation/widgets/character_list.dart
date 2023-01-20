@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/presentation/widgets/character_detail.dart';
+import 'package:rick_morty/feature/presentation/screens/character/character_detail_screen.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_status.dart';
 
 class CharacterList extends StatelessWidget {
