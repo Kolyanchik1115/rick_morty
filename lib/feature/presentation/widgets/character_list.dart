@@ -15,7 +15,7 @@ class CharacterList extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CharacterDetailPage(character: result),
+            builder: (context) => CharacterDetailScreen(character: result),
           ),
         );
       },

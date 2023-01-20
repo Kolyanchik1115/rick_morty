@@ -11,7 +11,6 @@ class CharacterEntity extends Equatable {
   final LocationEntity location;
   final String image;
   final List<String> episode;
-  final DateTime created;
 
   const CharacterEntity({
     required this.id,
@@ -24,7 +23,6 @@ class CharacterEntity extends Equatable {
     required this.location,
     required this.image,
     required this.episode,
-    required this.created,
   });
 
   @override
@@ -39,7 +37,6 @@ class CharacterEntity extends Equatable {
         location,
         image,
         episode,
-        created,
       ];
 }
 

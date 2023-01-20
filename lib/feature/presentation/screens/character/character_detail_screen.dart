@@ -1,12 +1,14 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_status.dart';
 
-class CharacterDetailPage extends StatelessWidget {
+class CharacterDetailScreen extends StatelessWidget {
   final CharacterEntity character;
 
-  const CharacterDetailPage({Key? key, required this.character})
+  const CharacterDetailScreen({Key? key, required this.character})
       : super(key: key);
 
   @override
@@ -14,14 +16,15 @@ class CharacterDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text('Character'),
+        title: const Text('Character Detail'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
+            BlurImage(character: character),
             const SizedBox(
-              height: 24,
+              height: 40,
             ),
             Text(
               character.name,
@@ -34,14 +37,6 @@ class CharacterDetailPage extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            CachedNetworkImage(
-              width: 260,
-              height: 260,
-              imageUrl: character.image,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -50,32 +45,118 @@ class CharacterDetailPage extends StatelessWidget {
                         ? LiveState.alive
                         : character.status == 'Dead'
                             ? LiveState.dead
-                            : LiveState.unknown),
-                const SizedBox(
-                  width: 8,
-                ),
+                            : LiveState.unknown)
               ],
             ),
             const SizedBox(
-              height: 16,
+              height: 70,
             ),
-            if (character.type.isNotEmpty)
-              ...buildText('Type:', character.type),
-            ...buildText('Gender:', character.gender),
-            ...buildText(
-                'Number of episodes: ', character.episode.length.toString()),
-            ...buildText('Species:', character.species),
-            ...buildText('Last known location:', character.location.name),
-            ...buildText('Origin:', character.origin.name),
-            ...buildText('Was created:', character.created.toString()),
+            BuildText(
+              character: character,
+            ),
           ],
         ),
       ),
     );
   }
+}
 
-  List<Widget> buildText(String text, String value) {
-    return [
+class BlurImage extends StatelessWidget {
+  const BlurImage({
+    super.key,
+    required this.character,
+  });
+
+  final CharacterEntity character;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          child: Container(
+            height: MediaQuery.of(context).size.height * .26,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(character.image),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.topCenter,
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * .17,
+              right: 20.0,
+              left: 20.0),
+          child: SizedBox(
+            child: CircleAvatar(
+              foregroundImage: CachedNetworkImageProvider(character.image),
+              radius: 100,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class BuildText extends StatelessWidget {
+  final CharacterEntity character;
+
+  const BuildText({super.key, required this.character});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Row(
+          children: [
+            customText('Пол:', character.gender),
+            const SizedBox(
+              width: 200,
+            ),
+            customText('Расса:', character.species),
+          ],
+        ),
+        const SizedBox(height: 40),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            customText('Место рождения:', character.origin.name),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+              size: 14,
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            customText('Местоположение:', character.location.name),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+              size: 14,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+Widget customText(String text, String value) {
+  return Column(
+    children: [
       Text(
         text,
         style: const TextStyle(
@@ -94,6 +175,6 @@ class CharacterDetailPage extends StatelessWidget {
       const SizedBox(
         height: 12,
       ),
-    ];
-  }
+    ],
+  );
 }
