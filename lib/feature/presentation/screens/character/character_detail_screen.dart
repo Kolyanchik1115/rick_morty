@@ -14,10 +14,9 @@ class CharacterDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text('Character Detail'),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -76,12 +75,25 @@ class BlurImage extends StatelessWidget {
         ImageFiltered(
           imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
           child: Container(
-            height: MediaQuery.of(context).size.height * .26,
+            height: MediaQuery.of(context).size.height * .32,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: CachedNetworkImageProvider(character.image),
               ),
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.topCenter,
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * .16,
+              right: 20.0,
+              left: 20.0),
+          child: const SizedBox(
+            child: CircleAvatar(
+              backgroundColor: Color(0xff0B1E2D),
+              radius: 110,
             ),
           ),
         ),
@@ -123,7 +135,7 @@ class BuildText extends StatelessWidget {
             customText('Расса:', character.species),
           ],
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 80),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
