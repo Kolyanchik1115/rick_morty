@@ -14,9 +14,6 @@ class CharacterDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -124,9 +121,9 @@ class BuildText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             customText('Пол:', character.gender),
             const SizedBox(

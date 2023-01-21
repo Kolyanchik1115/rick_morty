@@ -7,8 +7,8 @@ class CharacterEntity extends Equatable {
   final String species;
   final String type;
   final String gender;
-  final LocationEntity origin;
-  final LocationEntity location;
+  final LocationListEntity origin;
+  final LocationListEntity location;
   final String image;
   final List<String> episode;
 
@@ -40,11 +40,11 @@ class CharacterEntity extends Equatable {
       ];
 }
 
-class LocationEntity extends Equatable {
+class LocationListEntity extends Equatable {
   final String name;
   final String url;
 
-  const LocationEntity({required this.name, required this.url});
+  const LocationListEntity({required this.name, required this.url});
 
   @override
   List<Object?> get props => [name, url];

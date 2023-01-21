@@ -1,4 +1,4 @@
-import 'package:rick_morty/feature/data/models/location_model.dart';
+import 'package:rick_morty/feature/data/models/location_list_model.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 
 class CharacterModel extends CharacterEntity {
@@ -35,10 +35,10 @@ class CharacterModel extends CharacterEntity {
       type: json['type'] as String,
       gender: json['gender'] as String,
       origin: json['origin'] != null
-          ? LocationModel.fromJson(json['origin'])
+          ? LocationListModel.fromJson(json['origin'])
           : null,
       location: json['location'] != null
-          ? LocationModel.fromJson(json['location'])
+          ? LocationListModel.fromJson(json['location'])
           : null,
       image: json['image'] as String,
       episode:

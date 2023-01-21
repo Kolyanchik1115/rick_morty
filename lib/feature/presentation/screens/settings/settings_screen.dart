@@ -137,51 +137,24 @@ class ThemeWidget extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         InkWell(
-          onTap: () {
-            // showDialog(
-            //   context: context,
-            //   builder: (BuildContext context) {
-            //     return const AlertWidget();
-            //   },
-            // );
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(
+          onTap: () {},
+          child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
+              leading: const Icon(
                 BoxIcons.bx_palette,
-                size: 35,
                 color: Colors.white,
+                size: 40,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, bottom: 5),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        child: Text(
-                          'Темная тема',
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge!
-                              .copyWith(color: Colors.white),
-                        )),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: const [
-                        Text('Включена'),
-                      ],
-                    )
-                  ],
-                ),
+              title: const Text(' Темная тема',
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Row(
+                children: [
+                  Text(' Включена',
+                      style: Theme.of(context).textTheme.bodySmall)
+                ],
               ),
-            ],
-          ),
+              trailing: const Icon(Icons.keyboard_arrow_right,
+                  color: Colors.white, size: 30.0)),
         ),
       ],
     );

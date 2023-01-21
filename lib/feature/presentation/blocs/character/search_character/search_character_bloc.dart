@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/domain/usecases/get_character.dart';
-import 'package:rick_morty/feature/domain/usecases/search_character.dart';
+import 'package:rick_morty/feature/domain/usecases/character/search_character.dart';
 
 part 'search_character_event.dart';
 part 'search_character_state.dart';

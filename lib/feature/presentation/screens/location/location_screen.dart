@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/character/character/character_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
 import 'package:rick_morty/feature/presentation/widgets/search/character_search.dart';
+import 'package:rick_morty/feature/presentation/widgets/location_container.dart';
 import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
 
-class CharacterScreen extends StatelessWidget {
+class LocationScreen extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
 
-  CharacterScreen({super.key});
+  LocationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<CharacterEntity> results = [];
+    List<LocationEntity> results = [];
 
     return Scaffold(
       appBar: SearchBar(
-        hintText: 'Найти персонажа',
+        hintText: 'Найти локацию',
         delegate: CustomSearchDelegate(),
       ),
       body: Center(
-        child: BlocBuilder<CharacterBloc, CharacterState>(
+        child: BlocBuilder<LocationBloc, LocationState>(
           builder: (context, state) {
-            if (state is CharacterLoading) {
+            if (state is LocationLoading) {
               return const CircularProgressIndicator();
             }
-            if (state is CharacterLoaded) {
-              results.addAll(state.characterLoaded);
+            if (state is LocationLoaded) {
+              results.addAll(state.locationLoaded);
             }
 
             return ListView.builder(
@@ -35,11 +35,11 @@ class CharacterScreen extends StatelessWidget {
                 ..addListener(() {
                   if (_scrollController.offset ==
                       _scrollController.position.maxScrollExtent) {
-                    context.read<CharacterBloc>().add(CharacterEventFetch());
+                    context.read<LocationBloc>().add(LocationEventFetch());
                   }
                 }),
               itemBuilder: (context, index) =>
-                  CharacterList(result: results[index]),
+                  LocationContainer(result: results[index]),
               itemCount: results.length,
             );
           },

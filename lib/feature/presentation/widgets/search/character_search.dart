@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/character_bloc/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
 
 class CustomSearchDelegate extends SearchDelegate {

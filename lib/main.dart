@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
-import 'package:rick_morty/feature/presentation/blocs/character_bloc/character/character_bloc.dart';
-import 'package:rick_morty/feature/presentation/blocs/character_bloc/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/character/character/character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 import 'package:rick_morty/locator_service.dart' as di;
 import 'package:rick_morty/feature/presentation/screens/home/home_screen.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 sl<CharacterBloc>()..add(CharacterEventFetch()),
+          ),
+          BlocProvider(
+            create: (context) => sl<LocationBloc>()..add(LocationEventFetch()),
           ),
           BlocProvider(create: (context) => sl<NavigationBloc>()),
         ],
