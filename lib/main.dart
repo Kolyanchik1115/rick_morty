@@ -4,6 +4,7 @@ import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/presentation/blocs/character/character/character_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/search_location/bloc/search_location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 import 'package:rick_morty/locator_service.dart' as di;
 import 'package:rick_morty/feature/presentation/screens/home/home_screen.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => sl<SearchCharacterBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => sl<SearchLocationBloc>(),
           ),
           BlocProvider(
             create: (context) =>

@@ -12,6 +12,7 @@ import 'package:rick_morty/feature/domain/usecases/location/search_location.dart
 import 'package:rick_morty/feature/presentation/blocs/character/character/character_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/search_location/bloc/search_location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 
 final sl = GetIt.instance;
@@ -20,6 +21,8 @@ Future<void> init() async {
   sl.registerFactory(() => CharacterBloc(characterRepo: sl()));
   sl.registerFactory(() => SearchCharacterBloc(searchCharacter: sl()));
   sl.registerFactory(() => LocationBloc(locationRepo: sl()));
+  sl.registerFactory(() => SearchLocationBloc(searchLocation: sl()));
+
   sl.registerFactory(() => NavigationBloc());
 
   ///Use case

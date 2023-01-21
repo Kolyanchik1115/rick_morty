@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
-import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/search_location/bloc/search_location_bloc.dart';
 
-class CharacterSearch extends SearchDelegate {
-  CharacterSearch() : super(searchFieldLabel: 'Search for characters...');
+import 'package:rick_morty/feature/presentation/widgets/location_container.dart';
+
+class LocationSearch extends SearchDelegate {
+  LocationSearch() : super(searchFieldLabel: 'Search for locations...');
 
   final _suggestions = [
-    'Rick',
-    'Morty',
-    'Jerry',
+    'Earth',
+    'Abadango',
+    'Nuptia',
   ];
 
   @override
@@ -40,30 +41,26 @@ class CharacterSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    context.read<SearchCharacterBloc>().add(SearchCharacters(query));
-    return BlocBuilder<SearchCharacterBloc, SearchCharacterState>(
+    context.read<SearchLocationBloc>().add(SearchLocations(query));
+    return BlocBuilder<SearchLocationBloc, SearchLocationState>(
       builder: (context, state) {
-        if (state is PersonSearchLoading) {
+        if (state is SearchLocationLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is PersonSearchLoaded) {
-          final res = state.persons;
+        if (state is SearchLocationLoaded) {
+          final res = state.locations;
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,
             itemBuilder: (context, int index) {
-              CharacterEntity result = res[index];
-              return CharacterList(result: result);
+              LocationEntity result = res[index];
+              return LocationContainer(result: result);
             },
           );
         } else {
           return const Center(child: CircularProgressIndicator());
         }
-        // Text(
-        //     'No Characters with that name found',
-        //     style: Theme.of(context).textTheme.bodyLarge,
-        //   );
       },
     );
   }

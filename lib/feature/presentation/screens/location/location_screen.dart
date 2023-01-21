@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/search/character_search.dart';
 import 'package:rick_morty/feature/presentation/widgets/location_container.dart';
+import 'package:rick_morty/feature/presentation/widgets/search/location_search.dart';
 import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
 
 class LocationScreen extends StatelessWidget {
@@ -18,7 +18,7 @@ class LocationScreen extends StatelessWidget {
     return Scaffold(
       appBar: SearchBar(
         hintText: 'Найти локацию',
-        delegate: CustomSearchDelegate(),
+        delegate: LocationSearch(),
       ),
       body: Center(
         child: BlocBuilder<LocationBloc, LocationState>(

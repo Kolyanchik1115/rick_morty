@@ -18,7 +18,7 @@ class CharacterScreen extends StatelessWidget {
     return Scaffold(
       appBar: SearchBar(
         hintText: 'Найти персонажа',
-        delegate: CustomSearchDelegate(),
+        delegate: CharacterSearch(),
       ),
       body: Center(
         child: BlocBuilder<CharacterBloc, CharacterState>(
