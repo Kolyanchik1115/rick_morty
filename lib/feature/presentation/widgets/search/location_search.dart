@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/location/search_location/bloc/search_location_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
 
 import 'package:rick_morty/feature/presentation/widgets/location_container.dart';
 
@@ -41,15 +41,15 @@ class LocationSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    context.read<SearchLocationBloc>().add(SearchLocations(query));
-    return BlocBuilder<SearchLocationBloc, SearchLocationState>(
+    context.read<SearchBloc>().add(SearchLocations(query));
+    return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        if (state is SearchLocationLoading) {
+        if (state is SearchLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is SearchLocationLoaded) {
+        if (state is SearchLoaded) {
           final res = state.locations;
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,

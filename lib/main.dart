@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
-import 'package:rick_morty/feature/presentation/blocs/character/character/character_bloc.dart';
-import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
-import 'package:rick_morty/feature/presentation/blocs/location/location/location_bloc.dart';
-import 'package:rick_morty/feature/presentation/blocs/location/search_location/bloc/search_location_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/character/character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/location/location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
 import 'package:rick_morty/locator_service.dart' as di;
 import 'package:rick_morty/feature/presentation/screens/home/home_screen.dart';
 
@@ -29,10 +28,7 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => sl<SearchCharacterBloc>(),
-          ),
-          BlocProvider(
-            create: (context) => sl<SearchLocationBloc>(),
+            create: (context) => sl<SearchBloc>(),
           ),
           BlocProvider(
             create: (context) =>

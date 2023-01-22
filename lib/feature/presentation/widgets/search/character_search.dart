@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/character/search_character/search_character_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
 import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
 
 class CharacterSearch extends SearchDelegate {
@@ -40,15 +40,15 @@ class CharacterSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    context.read<SearchCharacterBloc>().add(SearchCharacters(query));
-    return BlocBuilder<SearchCharacterBloc, SearchCharacterState>(
+    context.read<SearchBloc>().add(SearchCharacters(query));
+    return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        if (state is PersonSearchLoading) {
+        if (state is SearchLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is PersonSearchLoaded) {
+        if (state is SearchLoaded) {
           final res = state.persons;
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,
@@ -60,10 +60,6 @@ class CharacterSearch extends SearchDelegate {
         } else {
           return const Center(child: CircularProgressIndicator());
         }
-        // Text(
-        //     'No Characters with that name found',
-        //     style: Theme.of(context).textTheme.bodyLarge,
-        //   );
       },
     );
   }

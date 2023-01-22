@@ -8,6 +8,7 @@ part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   final GetLocation locationRepo;
+
   int page = 1;
   LocationBloc({
     required this.locationRepo,
@@ -20,8 +21,9 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     Emitter<LocationState> emit,
   ) async {
     try {
-      final locationLoaded =
-          await locationRepo(page).timeout(const Duration(seconds: 3));
+      final locationLoaded = await locationRepo
+          .getLocation(page)
+          .timeout(const Duration(seconds: 3));
       emit(LocationLoaded(locationLoaded: locationLoaded));
       page++;
     } catch (_) {

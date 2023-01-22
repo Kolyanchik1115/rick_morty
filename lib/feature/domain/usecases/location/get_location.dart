@@ -1,14 +1,25 @@
-import 'package:rick_morty/feature/data/datasource/location_remote.dart';
-import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 import 'package:rick_morty/feature/domain/repositories/location_repository.dart';
 
-class GetLocation {
+abstract class LocationUseCase {
+  Future<List<LocationEntity>> getLocation(int page);
+  Future<List<LocationEntity>> searchLocation(String query);
+}
+
+class GetLocation extends LocationUseCase {
   final LocationRepository locationRepository;
 
-  GetLocation(this.locationRepository);
+  GetLocation({
+    required this.locationRepository,
+  });
 
-  Future<List<LocationEntity>> call(int page) async {
+  @override
+  Future<List<LocationEntity>> getLocation(int page) async {
     return await locationRepository.getLocation(page);
+  }
+
+  @override
+  Future<List<LocationEntity>> searchLocation(String query) async {
+    return await locationRepository.searchLocation(query);
   }
 }

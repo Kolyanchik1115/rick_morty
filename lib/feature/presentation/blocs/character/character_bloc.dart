@@ -21,7 +21,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   ) async {
     try {
       final characterLoaded =
-          await characterRepo(page).timeout(const Duration(seconds: 3));
+          await characterRepo.getCharacter(page).timeout(const Duration(seconds: 3));
       emit(CharacterLoaded(characterLoaded: characterLoaded));
       page++;
     } catch (_) {
