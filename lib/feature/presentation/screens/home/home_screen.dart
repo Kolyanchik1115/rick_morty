@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 import 'package:rick_morty/feature/presentation/screens/character/character_screen.dart';
-import 'package:rick_morty/feature/presentation/screens/episode/episode.dart';
+import 'package:rick_morty/feature/presentation/screens/episode/episode_screen.dart';
 import 'package:rick_morty/feature/presentation/screens/location/location_screen.dart';
 import 'package:rick_morty/feature/presentation/screens/settings/settings_screen.dart';
 
@@ -75,7 +75,7 @@ class RootScreen extends StatelessWidget {
             return LocationScreen();
           }
           if (state.navbarItem == NavbarItem.episodes) {
-            return const EpisodeScreen();
+            return EpisodeScreen();
           }
           if (state.navbarItem == NavbarItem.settings) {
             return const SettingsScreen();

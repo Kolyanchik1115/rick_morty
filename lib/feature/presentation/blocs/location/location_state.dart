@@ -7,7 +7,14 @@ abstract class LocationState extends Equatable {
   List<Object> get props => [];
 }
 
-class LocationLoading extends LocationState {}
+class LocationInitial extends LocationState {}
+
+class LocationLoading extends LocationState {
+  final List<LocationEntity> oldLocation;
+  final bool isFirstFetch;
+
+  const LocationLoading(this.oldLocation, {this.isFirstFetch = false});
+}
 
 class LocationLoaded extends LocationState {
   final List<LocationEntity> locationLoaded;

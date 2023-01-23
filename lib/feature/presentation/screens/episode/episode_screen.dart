@@ -1,51 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
-import 'package:rick_morty/feature/presentation/blocs/location/location_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/location_list.dart';
-import 'package:rick_morty/feature/presentation/widgets/search/location_search.dart';
+import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
+import 'package:rick_morty/feature/presentation/blocs/episode/episode_bloc.dart';
+import 'package:rick_morty/feature/presentation/widgets/episodes_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/search/episode_search.dart';
 import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
 
-class LocationScreen extends StatelessWidget {
+class EpisodeScreen extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
 
-  LocationScreen({super.key});
+  EpisodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchBar(
-        hintText: 'Найти локацию',
-        delegate: LocationSearch(),
+        hintText: 'Найти эпизод',
+        delegate: EpisodeSearch(),
       ),
       body: Center(
-        child: BlocBuilder<LocationBloc, LocationState>(
+        child: BlocBuilder<EpisodeBloc, EpisodeState>(
           builder: (context, state) {
-            List<LocationEntity> results = [];
+            List<EpisodeEntity> results = [];
             bool isLoading = false;
 
-            if (state is LocationLoading && state.isFirstFetch) {
+            if (state is EpisodeLoading && state.isFirstFetch) {
               return const CircularProgressIndicator();
             }
-            if (state is LocationLoading) {
-              results = state.oldLocation;
+            if (state is EpisodeLoading) {
+              results = state.oldEpisode;
               isLoading = true;
             }
-            if (state is LocationLoaded) {
-              results = state.locationLoaded;
+            if (state is EpisodeLoaded) {
+              results = state.episodeLoaded;
             }
+
             return ListView.builder(
               controller: _scrollController
                 ..addListener(() {
                   if (_scrollController.offset ==
                       _scrollController.position.maxScrollExtent) {
-                    context.read<LocationBloc>().add(LocationEventFetch());
+                    context.read<EpisodeBloc>().add(EpisodeEventFetch());
                   }
                 }),
               itemCount: results.length + (isLoading ? 1 : 0),
               itemBuilder: (context, index) {
                 if (index < results.length) {
-                  return LocationList(result: results[index]);
+                  return EpisodeList(result: results[index]);
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }

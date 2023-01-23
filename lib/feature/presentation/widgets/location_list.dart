@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 
-class LocationContainer extends StatelessWidget {
+class LocationList extends StatelessWidget {
   final LocationEntity result;
-  const LocationContainer({Key? key, required this.result}) : super(key: key);
+  const LocationList({Key? key, required this.result}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,47 +87,3 @@ class LocationContainer extends StatelessWidget {
     );
   }
 }
-
-
-      
-  
-
-
-    // GestureDetector(
-    //   onTap: () {},
-    //   child: Padding(
-    //     padding: const EdgeInsets.all(18),
-    //     child: Stack(
-    //       children: [
-    //         Container(
-    //           height: MediaQuery.of(context).size.height * .27,
-    //           decoration: const BoxDecoration(
-    //             borderRadius: BorderRadius.all(
-    //               Radius.circular(30),
-    //             ),
-    //             image: DecorationImage(
-    //               fit: BoxFit.cover,
-    //               image: CachedNetworkImageProvider(
-    //                   'https://i.ytimg.com/vi/BSymgfwoAmI/maxresdefault.jpg'),
-    //             ),
-    //           ),
-    //         ),
-    //         Column(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //           children: [
-    //             SizedBox(
-    //                 width: MediaQuery.of(context).size.width / 1.5,
-    //                 child: Text(
-    //                   result.name.toUpperCase(),
-    //                   overflow: TextOverflow.ellipsis,
-    //                   style: Theme.of(context)
-    //                       .textTheme
-    //                       .displayLarge!
-    //                       .copyWith(color: Colors.white),
-    //                 )),
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );

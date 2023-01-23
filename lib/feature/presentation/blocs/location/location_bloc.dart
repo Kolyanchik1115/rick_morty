@@ -12,20 +12,32 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   int page = 1;
   LocationBloc({
     required this.locationRepo,
-  }) : super(LocationLoading()) {
-    on<LocationEventFetch>(_onCharacterEventFetch);
+  }) : super(LocationInitial()) {
+    on<LocationEventFetch>(_onLocationEventFetch);
   }
 
-  Future<void> _onCharacterEventFetch(
+  Future<void> _onLocationEventFetch(
     LocationEventFetch event,
     Emitter<LocationState> emit,
   ) async {
+    if (state is LocationLoading) return;
+
+    final currentState = state;
+
+    var oldLocation = <LocationEntity>[];
+
+    if (currentState is LocationLoaded) {
+      oldLocation = currentState.locationLoaded;
+    }
     try {
-      final locationLoaded = await locationRepo
-          .getLocation(page)
-          .timeout(const Duration(seconds: 3));
-      emit(LocationLoaded(locationLoaded: locationLoaded));
-      page++;
+      emit(LocationLoading(oldLocation, isFirstFetch: page == 1));
+
+      await locationRepo.getLocation(page).then((newCharacter) {
+        page++;
+        final location = (state as LocationLoading).oldLocation;
+        location.addAll(newCharacter);
+        emit(LocationLoaded(locationLoaded: location));
+      });
     } catch (_) {
       emit(LocationError());
     }

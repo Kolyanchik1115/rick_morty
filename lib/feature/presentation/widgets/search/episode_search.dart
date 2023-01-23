@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
-import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
+import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
+import 'package:rick_morty/feature/presentation/widgets/episodes_list.dart';
 
-import 'package:rick_morty/feature/presentation/widgets/location_list.dart';
-
-class LocationSearch extends SearchDelegate {
-  LocationSearch() : super(searchFieldLabel: 'Search for locations...');
+class EpisodeSearch extends SearchDelegate {
+  EpisodeSearch() : super(searchFieldLabel: 'Search for episodes...');
 
   final _suggestions = [
-    'Earth',
-    'Abadango',
-    'Nuptia',
+    'Pilot',
+    'Rick Potion #9',
+    'Anatomy Park',
   ];
 
   @override
@@ -41,7 +40,7 @@ class LocationSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    context.read<SearchBloc>().add(SearchLocations(query));
+    context.read<SearchBloc>().add(SearchEpisodes(query));
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         if (state is SearchLoading) {
@@ -50,12 +49,12 @@ class LocationSearch extends SearchDelegate {
           );
         }
         if (state is SearchLoaded) {
-          final res = state.locations;
+          final res = state.episodes;
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,
             itemBuilder: (context, int index) {
-              LocationEntity result = res[index];
-              return LocationList(result: result);
+              EpisodeEntity result = res[index];
+              return EpisodeList(result: result);
             },
           );
         } else {

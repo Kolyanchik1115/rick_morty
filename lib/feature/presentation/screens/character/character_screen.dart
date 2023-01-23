@@ -13,8 +13,6 @@ class CharacterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<CharacterEntity> results = [];
-
     return Scaffold(
       appBar: SearchBar(
         hintText: 'Найти персонажа',
@@ -23,13 +21,19 @@ class CharacterScreen extends StatelessWidget {
       body: Center(
         child: BlocBuilder<CharacterBloc, CharacterState>(
           builder: (context, state) {
-            if (state is CharacterLoading) {
+            List<CharacterEntity> results = [];
+            bool isLoading = false;
+
+            if (state is CharacterLoading && state.isFirstFetch) {
               return const CircularProgressIndicator();
             }
-            if (state is CharacterLoaded) {
-              results.addAll(state.characterLoaded);
+            if (state is CharacterLoading) {
+              results = state.oldCharacter;
+              isLoading = true;
             }
-
+            if (state is CharacterLoaded) {
+              results = state.characterLoaded;
+            }
             return ListView.builder(
               controller: _scrollController
                 ..addListener(() {
@@ -38,9 +42,14 @@ class CharacterScreen extends StatelessWidget {
                     context.read<CharacterBloc>().add(CharacterEventFetch());
                   }
                 }),
-              itemBuilder: (context, index) =>
-                  CharacterList(result: results[index]),
-              itemCount: results.length,
+              itemCount: results.length + (isLoading ? 1 : 0),
+              itemBuilder: (context, index) {
+                if (index < results.length) {
+                  return CharacterList(result: results[index]);
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
             );
           },
         ),
