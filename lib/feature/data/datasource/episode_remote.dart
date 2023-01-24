@@ -1,26 +1,22 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty/common/config.dart';
 import 'package:rick_morty/feature/data/models/episode_model.dart';
 
 abstract class EpisodeNetwork {
   Future<List<EpisodeModel>> getEpisode(int page);
-  // Future<List<EpisodeModel>> getTabsEpisode(List<int> page);
 
   Future<List<EpisodeModel>> searchEpisode(String query);
 }
 
 class EpisodeRepo extends EpisodeNetwork {
-  // @override
-  // Future<List<EpisodeModel>> getTabsEpisode(List<int> page) =>
-  //     _getEpisodeFromUrl('https://rickandmortyapi.com/api/episode/?page=$page');
-
   @override
   Future<List<EpisodeModel>> getEpisode(int page) =>
-      _getEpisodeFromUrl('https://rickandmortyapi.com/api/episode/?page=$page');
+      _getEpisodeFromUrl('${Confing.host}/episode/?page=$page');
 
   @override
-  Future<List<EpisodeModel>> searchEpisode(String query) => _getEpisodeFromUrl(
-      'https://rickandmortyapi.com/api/episode/?name=$query');
+  Future<List<EpisodeModel>> searchEpisode(String query) =>
+      _getEpisodeFromUrl('${Confing.host}/episode/?name=$query');
 
   Future<List<EpisodeModel>> _getEpisodeFromUrl(String url) async {
     try {

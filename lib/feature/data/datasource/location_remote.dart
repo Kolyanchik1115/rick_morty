@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty/common/config.dart';
 import 'package:rick_morty/feature/data/models/location_model.dart';
 
 abstract class LocationNetwork {
@@ -10,12 +11,12 @@ abstract class LocationNetwork {
 class LocationRepo extends LocationNetwork {
   @override
   Future<List<LocationModel>> getLocations(int page) => _getLocationFromUrl(
-      'https://rickandmortyapi.com/api/location/?page=$page');
+      '${Confing.host}/location/?page=$page');
 
   @override
   Future<List<LocationModel>> searchLocations(String query) =>
       _getLocationFromUrl(
-          'https://rickandmortyapi.com/api/location/?name=$query');
+          '${Confing.host}/location/?name=$query');
 
   Future<List<LocationModel>> _getLocationFromUrl(String url) async {
     try {

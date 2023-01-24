@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty/common/config.dart';
 import 'package:rick_morty/feature/data/models/character_model.dart';
 
 abstract class CharacterNetwork {
@@ -9,13 +10,13 @@ abstract class CharacterNetwork {
 
 class CharacterRepo extends CharacterNetwork {
   @override
-  Future<List<CharacterModel>> getCharacters(int page) => _getCharacterFromUrl(
-      'https://rickandmortyapi.com/api/character/?page=$page');
+  Future<List<CharacterModel>> getCharacters(int page) =>
+      _getCharacterFromUrl('${Confing.host}/character/?page=$page');
 
   @override
   Future<List<CharacterModel>> searchCharacters(String query) =>
-      _getCharacterFromUrl(
-          'https://rickandmortyapi.com/api/character/?name=$query');
+      _getCharacterFromUrl('${Confing.host}/character/?name=$query');
+
 
   Future<List<CharacterModel>> _getCharacterFromUrl(String url) async {
     try {
