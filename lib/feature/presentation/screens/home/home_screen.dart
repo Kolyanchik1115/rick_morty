@@ -69,13 +69,13 @@ class RootScreen extends StatelessWidget {
       body: BlocBuilder<NavigationBloc, NavigationState>(
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.characters) {
-            return CharacterScreen();
+            return const CharacterScreen();
           }
           if (state.navbarItem == NavbarItem.locations) {
-            return LocationScreen();
+            return const LocationScreen();
           }
           if (state.navbarItem == NavbarItem.episodes) {
-            return EpisodeScreen();
+            return const EpisodeScreen();
           }
           if (state.navbarItem == NavbarItem.settings) {
             return const SettingsScreen();

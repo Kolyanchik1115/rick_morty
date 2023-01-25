@@ -2,9 +2,11 @@ import 'package:get_it/get_it.dart';
 import 'package:rick_morty/feature/data/datasource/character_remote.dart';
 import 'package:rick_morty/feature/data/datasource/episode_remote.dart';
 import 'package:rick_morty/feature/data/datasource/location_remote.dart';
+import 'package:rick_morty/feature/data/models/character_model.dart';
 import 'package:rick_morty/feature/data/repository/character_repository_impl.dart';
 import 'package:rick_morty/feature/data/repository/episode_repository_impl.dart';
 import 'package:rick_morty/feature/data/repository/location_repository_impl.dart';
+import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/domain/repositories/character_repository.dart';
 import 'package:rick_morty/feature/domain/repositories/episode_repository.dart';
 import 'package:rick_morty/feature/domain/repositories/location_repository.dart';
@@ -51,4 +53,5 @@ Future<void> init() async {
   sl.registerLazySingleton<CharacterNetwork>(() => CharacterRepo());
   sl.registerLazySingleton<LocationNetwork>(() => LocationRepo());
   sl.registerLazySingleton<EpisodeNetwork>(() => EpisodeRepo());
+  /////
 }
