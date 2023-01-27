@@ -16,12 +16,9 @@ dependencies:
   icons_plus: ^3.0.0
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
-  build_runner: ^2.3.3
-  json_serializable: ^6.5.4
-  json_annotation: ^4.7.0
-  http: ^0.13.5
   cached_network_image: ^3.2.3
   get_it: ^7.2.0
+  dio: ^4.0.6
   
 
 dev_dependencies:
@@ -33,7 +30,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   # assets:
   #   - assets/
 
@@ -42,11 +38,3 @@ flutter:
     - family: Roboto
       fonts:
         - asset: fonts/Roboto-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

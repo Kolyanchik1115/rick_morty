@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:rick_morty/common/network_images.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 
 class LocationList extends StatelessWidget {
@@ -27,8 +28,8 @@ class LocationList extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: CachedNetworkImageProvider(
-                      'https://i.ytimg.com/vi/BSymgfwoAmI/maxresdefault.jpg'),
+                  image:
+                      CachedNetworkImageProvider(NetworkImages.locationImage),
                 ),
               ),
             ),

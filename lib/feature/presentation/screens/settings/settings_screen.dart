@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:rick_morty/common/network_images.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -54,10 +55,10 @@ class EditContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const CircleAvatar(
+               const CircleAvatar(
                 backgroundColor: Colors.transparent,
                 foregroundImage: NetworkImage(
-                    'https://rickandmortyapi.com/api/character/avatar/1.jpeg'),
+                    NetworkImages.avatar),
                 radius: 40,
               ),
               Padding(

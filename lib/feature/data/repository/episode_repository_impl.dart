@@ -1,4 +1,4 @@
-import 'package:rick_morty/feature/data/datasource/episode_remote.dart';
+import 'package:rick_morty/feature/data/datasource/api/episode_api.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 import 'package:rick_morty/feature/domain/repositories/episode_repository.dart';
 

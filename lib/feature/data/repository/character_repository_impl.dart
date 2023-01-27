@@ -1,6 +1,6 @@
+import 'package:rick_morty/feature/data/datasource/api/character_api.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/domain/repositories/character_repository.dart';
-import 'package:rick_morty/feature/data/datasource/character_remote.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
   final CharacterNetwork remoteDataSource;

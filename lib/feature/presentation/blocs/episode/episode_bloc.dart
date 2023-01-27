@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
-import 'package:rick_morty/feature/domain/usecases/episode/get_episode.dart';
+import 'package:rick_morty/feature/domain/usecases/episode_usecase.dart';
 
 part 'episode_event.dart';
 part 'episode_state.dart';

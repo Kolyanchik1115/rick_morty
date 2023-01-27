@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
-import 'package:rick_morty/feature/domain/usecases/character/get_character.dart';
-import 'package:rick_morty/feature/domain/usecases/episode/get_episode.dart';
-import 'package:rick_morty/feature/domain/usecases/location/get_location.dart';
+import 'package:rick_morty/feature/domain/usecases/character_usecase.dart';
+import 'package:rick_morty/feature/domain/usecases/episode_usecase.dart';
+import 'package:rick_morty/feature/domain/usecases/location_usecase.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';

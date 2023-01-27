@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
+import 'package:rick_morty/common/network_images.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 
 class EpisodeList extends StatelessWidget {
@@ -30,7 +30,7 @@ class EpisodeList extends StatelessWidget {
                     image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: CachedNetworkImageProvider(
-                          'https://www.fortressofsolitude.co.za/wp-content/uploads/2021/06/5-Best-Rick-and-Morty-Episodes-So-Far.png'),
+                          NetworkImages.episodeImage),
                     ),
                   ),
                 ),
