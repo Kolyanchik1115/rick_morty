@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/episodes_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/lists/episodes_list.dart';
 
 class EpisodeSearch extends SearchDelegate {
   EpisodeSearch() : super(searchFieldLabel: 'Search for episodes...');

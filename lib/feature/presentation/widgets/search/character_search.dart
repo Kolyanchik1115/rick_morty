@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/character_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/character_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/lists/character_list.dart';
 
 class CharacterSearch extends SearchDelegate {
   CharacterSearch() : super(searchFieldLabel: 'Search for characters...');

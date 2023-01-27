@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/common/theme.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
-
-import 'package:rick_morty/feature/presentation/widgets/location_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/lists/location_list.dart';
 
 class LocationSearch extends SearchDelegate {
   LocationSearch() : super(searchFieldLabel: 'Search for locations...');
