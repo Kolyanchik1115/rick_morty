@@ -1,4 +1,4 @@
-import 'package:rick_morty/feature/data/datasource/api/location_remote.dart';
+import 'package:rick_morty/feature/data/datasource/api/location_api.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 import 'package:rick_morty/feature/domain/repositories/location_repository.dart';
 

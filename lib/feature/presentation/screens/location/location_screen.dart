@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/location_enitity.dart';
 import 'package:rick_morty/feature/presentation/blocs/location/location_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/location_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/lists/location_list.dart';
 import 'package:rick_morty/feature/presentation/widgets/search/location_search.dart';
-import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
+import 'package:rick_morty/feature/presentation/widgets/search/search_bar.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});

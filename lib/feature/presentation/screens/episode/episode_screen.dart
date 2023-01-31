@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty/feature/domain/entities/episode_entity.dart';
 import 'package:rick_morty/feature/presentation/blocs/episode/episode_bloc.dart';
-import 'package:rick_morty/feature/presentation/widgets/episodes_list.dart';
+import 'package:rick_morty/feature/presentation/widgets/lists/episodes_list.dart';
 import 'package:rick_morty/feature/presentation/widgets/search/episode_search.dart';
-import 'package:rick_morty/feature/presentation/widgets/search_bar.dart';
+import 'package:rick_morty/feature/presentation/widgets/search/search_bar.dart';
 
 class EpisodeScreen extends StatefulWidget {
   const EpisodeScreen({super.key});

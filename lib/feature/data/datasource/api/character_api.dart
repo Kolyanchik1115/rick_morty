@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:rick_morty/common/config.dart';
 import 'package:rick_morty/feature/data/datasource/dio/dio_client.dart';
-import 'package:rick_morty/feature/data/datasource/dio/dio_exception.dart';
 import 'package:rick_morty/feature/data/models/character_model.dart';
 
 abstract class CharacterNetwork {
@@ -16,29 +13,31 @@ class CharacterRepo implements CharacterNetwork {
 
   @override
   Future<List<CharacterModel>> getCharacters(int page) async {
-    try {
-      var response = await dioClient.get('${Config.character}/?page=$page');
-      final characters = (response.data['results'] as List)
-          .map((e) => CharacterModel.fromJson(e))
-          .toList();
-      return characters;
-    } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
+    final response = await dioClient.get(
+      '/character',
+      queryParameters: {
+        'page': page.toString(),
+      },
+    );
+    
+    final characters = (response.data['results'] as List)
+        .map((e) => CharacterModel.fromJson(e))
+        .toList();
+    return characters;
   }
 
   @override
   Future<List<CharacterModel>> searchCharacters(String query) async {
-    try {
-      final response = await dioClient.get('${Config.character}/?name=$query');
-      final characters = (response.data['results'] as List)
-          .map((e) => CharacterModel.fromJson(e))
-          .toList();
-      return characters;
-    } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
+    final response = await dioClient.get(
+      '/character',
+      queryParameters: {
+        'name': query.toString(),
+      },
+    );
+    
+    final characters = (response.data['results'] as List)
+        .map((e) => CharacterModel.fromJson(e))
+        .toList();
+    return characters;
   }
 }

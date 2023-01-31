@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:rick_morty/common/config.dart';
 import 'package:rick_morty/feature/data/datasource/dio/dio_client.dart';
-import 'package:rick_morty/feature/data/datasource/dio/dio_exception.dart';
 import 'package:rick_morty/feature/data/models/episode_model.dart';
 
 abstract class EpisodeNetwork {
@@ -17,30 +14,29 @@ class EpisodeRepo implements EpisodeNetwork {
 
   @override
   Future<List<EpisodeModel>> getEpisode(int page) async {
-    try {
-      var response = await dioClient.get('${Config.episode}/?page=$page');
-      final episodes = (response.data['results'] as List)
-          .map((e) => EpisodeModel.fromJson(e))
-          .toList();
-      return episodes;
-    } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
+    final response = await dioClient.get(
+      '/episode',
+      queryParameters: {
+        'page': page.toString(),
+      },
+    );
+    final episodes = (response.data['results'] as List)
+        .map((e) => EpisodeModel.fromJson(e))
+        .toList();
+    return episodes;
   }
 
   @override
   Future<List<EpisodeModel>> searchEpisode(String query) async {
-    try {
-      final response = await dioClient.get('${Config.episode}/?name=$query');
-      final episodes = (response.data['results'] as List)
-          .map((e) => EpisodeModel.fromJson(e))
-          .toList();
-      return episodes;
-    } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
+    final response = await dioClient.get(
+      '/episode',
+      queryParameters: {
+        'name': query.toString(),
+      },
+    );
+    final episodes = (response.data['results'] as List)
+        .map((e) => EpisodeModel.fromJson(e))
+        .toList();
+    return episodes;
   }
 }
-

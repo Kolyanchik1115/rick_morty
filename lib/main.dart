@@ -22,33 +22,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Rick and Morty',
-      debugShowCheckedModeBanner: false,
-      theme: darkTheme(),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => sl<SearchBloc>(),
-          ),
-          BlocProvider(
-            create: (context) =>
-                sl<CharacterBloc>()..add(CharacterEventFetch()),
-          ),
-          BlocProvider(
-            create: (context) => sl<LocationBloc>()..add(LocationEventFetch()),
-          ),
-          BlocProvider(
-            create: (context) => sl<EpisodeBloc>()..add(EpisodeEventFetch()),
-          ),
-          BlocProvider(create: (context) => sl<NavigationBloc>()),
-        ],
-        child: MaterialApp(
-          title: 'Rick and Morty',
-          debugShowCheckedModeBanner: false,
-          theme: darkTheme(),
-          home: const RootScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<SearchBloc>(),
         ),
+        BlocProvider(
+          create: (context) => sl<CharacterBloc>()..add(CharacterEventFetch()),
+        ),
+        BlocProvider(
+          create: (context) => sl<LocationBloc>()..add(LocationEventFetch()),
+        ),
+        BlocProvider(
+          create: (context) => sl<EpisodeBloc>()..add(EpisodeEventFetch()),
+        ),
+        BlocProvider(create: (context) => sl<NavigationBloc>()),
+      ],
+      child: MaterialApp(
+        title: 'Rick and Morty',
+        debugShowCheckedModeBanner: false,
+        theme: darkTheme(),
+        home: const RootScreen(),
       ),
     );
   }

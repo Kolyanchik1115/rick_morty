@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:rick_morty/common/config.dart';
+import 'package:rick_morty/feature/data/datasource/dio/dio_exception.dart';
 
 abstract class NetworkClient {
   Future<Response> get(
     String url, {
     Map<String, dynamic>? queryParameters,
     Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
   });
 }
 
-class DioClient implements NetworkClient{
+class DioClient implements NetworkClient {
   final Dio _dio;
 
   DioClient(this._dio) {
@@ -21,26 +20,23 @@ class DioClient implements NetworkClient{
       ..options.receiveTimeout = Config.receiveTimeout
       ..options.responseType = ResponseType.json;
   }
-
+  
   @override
-  Future<Response> get(String url,
-      {Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress}) async {
-    {
-      try {
-        final Response response = await _dio.get(
-          url,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-          onReceiveProgress: onReceiveProgress,
-        );
-        return response;
-      } catch (e) {
-        rethrow;
-      }
+  Future<Response> get(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    try {
+      final Response response = await _dio.get(
+        url,
+        queryParameters: queryParameters,
+        options: options,
+      );
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
     }
   }
 }

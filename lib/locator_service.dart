@@ -2,7 +2,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:get_it/get_it.dart';
 import 'package:rick_morty/feature/data/datasource/api/character_api.dart';
 import 'package:rick_morty/feature/data/datasource/api/episode_api.dart';
-import 'package:rick_morty/feature/data/datasource/api/location_remote.dart';
+import 'package:rick_morty/feature/data/datasource/api/location_api.dart';
 import 'package:rick_morty/feature/data/datasource/dio/dio_client.dart';
 import 'package:rick_morty/feature/data/repository/character_repository_impl.dart';
 import 'package:rick_morty/feature/data/repository/episode_repository_impl.dart';
