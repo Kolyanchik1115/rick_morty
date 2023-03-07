@@ -18,6 +18,7 @@ import 'package:rick_morty/feature/presentation/blocs/episode/episode_bloc.dart'
 import 'package:rick_morty/feature/presentation/blocs/location/location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/theme/theme_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -31,6 +32,7 @@ Future<void> init() async {
         episodeRepo: sl(),
       ));
   sl.registerFactory(() => NavigationBloc());
+  sl.registerFactory(() => ThemeCubit());
 
 //////
   sl.registerLazySingleton(() => GetCharacter(characterRepository: sl()));
@@ -53,8 +55,7 @@ Future<void> init() async {
       () => CharacterRepo(dioClient: sl()));
   sl.registerLazySingleton<LocationNetwork>(
       () => LocationRepo(dioClient: sl()));
-  sl.registerLazySingleton<EpisodeNetwork>(
-      () => EpisodeRepo(dioClient: sl()));
+  sl.registerLazySingleton<EpisodeNetwork>(() => EpisodeRepo(dioClient: sl()));
 
   /////
   sl.registerSingleton(DioClient(dio.Dio()));

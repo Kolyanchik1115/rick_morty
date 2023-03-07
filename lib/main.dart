@@ -6,6 +6,7 @@ import 'package:rick_morty/feature/presentation/blocs/episode/episode_bloc.dart'
 import 'package:rick_morty/feature/presentation/blocs/location/location_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/navigation/navigation_bloc.dart';
 import 'package:rick_morty/feature/presentation/blocs/search/search_bloc.dart';
+import 'package:rick_morty/feature/presentation/blocs/theme/theme_cubit.dart';
 import 'package:rick_morty/locator_service.dart' as di;
 import 'package:rick_morty/feature/presentation/screens/home/home_screen.dart';
 
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => sl<ThemeCubit>(),
+        ),
+        BlocProvider(
           create: (context) => sl<SearchBloc>(),
         ),
         BlocProvider(
@@ -38,11 +42,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => sl<NavigationBloc>()),
       ],
-      child: MaterialApp(
-        title: 'Rick and Morty',
-        debugShowCheckedModeBanner: false,
-        theme: darkTheme(),
-        home: const RootScreen(),
+      child: BlocBuilder<ThemeCubit, ThemeData>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Rick and Morty',
+            debugShowCheckedModeBanner: false,
+            theme: state,
+            home: const RootScreen(),
+          );
+        },
       ),
     );
   }

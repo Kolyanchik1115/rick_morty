@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:rick_morty/common/network_images.dart';
+import 'package:rick_morty/feature/presentation/blocs/theme/theme_cubit.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -55,10 +57,9 @@ class EditContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-               const CircleAvatar(
+              const CircleAvatar(
                 backgroundColor: Colors.transparent,
-                foregroundImage: NetworkImage(
-                    NetworkImages.avatar),
+                foregroundImage: NetworkImage(NetworkImages.avatar),
                 radius: 40,
               ),
               Padding(
@@ -138,23 +139,19 @@ class ThemeWidget extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         InkWell(
-          onTap: () {},
-          child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
-              leading: const Icon(
+          onTap: () {
+            context.read<ThemeCubit>().toggleTheme();
+          },
+          child: const ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 5.0),
+              leading: Icon(
                 BoxIcons.bx_palette,
                 color: Colors.white,
                 size: 40,
               ),
-              title: const Text(' Темная тема',
+              title: Text(' Изменить тему',
                   style: TextStyle(color: Colors.white)),
-              subtitle: Row(
-                children: [
-                  Text(' Включена',
-                      style: Theme.of(context).textTheme.bodySmall)
-                ],
-              ),
-              trailing: const Icon(Icons.keyboard_arrow_right,
+              trailing: Icon(Icons.keyboard_arrow_right,
                   color: Colors.white, size: 30.0)),
         ),
       ],

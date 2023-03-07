@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 
-ThemeData darkTheme() {
-  return ThemeData(
+class AppTheme {
+  //
+  static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xff0B1E2D),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xff152A3A),
       selectedItemColor: Color(0xff43D049),
       unselectedItemColor: Color(0xff5B6975),
+    ),
+    fontFamily: 'Roboto',
+    textTheme: textTheme(),
+  );
+  static final ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: const Color(0xffF2F2F2),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Color(0xffE5E5E5),
+      selectedItemColor: Color(0xff22A2BD),
+      unselectedItemColor: Color(0xffBDBDBD),
     ),
     fontFamily: 'Roboto',
     textTheme: textTheme(),
@@ -34,19 +45,6 @@ ThemeData searchTheme() {
   );
 }
 
-// ThemeData lightTheme() {
-//   return ThemeData(
-//     scaffoldBackgroundColor: Colors.white,
-//     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-//       backgroundColor: Colors.blueAccent,
-//       selectedItemColor: Colors.blueAccent,
-//       unselectedItemColor: Color(0xff5B6975),
-//     ),
-//     fontFamily: 'Roboto',
-//     textTheme: textTheme(),
-//   );
-// }
-
 TextTheme textTheme() {
   return const TextTheme(
     displayLarge: TextStyle(
@@ -70,7 +68,7 @@ TextTheme textTheme() {
       fontWeight: FontWeight.normal,
     ),
     bodyMedium: TextStyle(
-      color: Color(0xff5B6975),
+      color: Colors.white,
       fontSize: 16,
       fontWeight: FontWeight.normal,
     ),
