@@ -12,7 +12,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
   CharacterBloc({
     required this.characterRepo,
-  }) : super(CharacterInitial()) {
+  }) : super(const CharacterState()) {
     on<CharacterEventFetch>(_onCharacterEventFetch);
   }
 
@@ -20,27 +20,26 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     CharacterEventFetch event,
     Emitter<CharacterState> emit,
   ) async {
-    if (state is CharacterLoading) return;
-
-    final currentState = state;
-
     var oldCharacter = <CharacterEntity>[];
 
-    if (currentState is CharacterLoaded) {
-      oldCharacter = currentState.characterLoaded;
+    if (state.status == CharacterStatus.loaded) {
+      oldCharacter = state.characterLoaded;
     }
 
     try {
-      emit(CharacterLoading(oldCharacter, isFirstFetch: page == 1));
+      emit(state.copyWith(oldCharacter: oldCharacter, isFirstFetch: page == 1));
 
       await characterRepo.getCharacter(page).then((newCharacter) {
         page++;
-        final character = (state as CharacterLoading).oldCharacter;
+        final character = state.oldCharacter;
         character.addAll(newCharacter);
-        emit(CharacterLoaded(characterLoaded: character));
+        emit(state.copyWith(
+          characterLoaded: character,
+          status: CharacterStatus.loaded,
+        ));
       });
     } catch (_) {
-      emit(CharacterError());
+      emit(state.copyWith(status: CharacterStatus.error));
     }
   }
 }

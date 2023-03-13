@@ -43,12 +43,12 @@ class LocationSearch extends SearchDelegate {
     context.read<SearchBloc>().add(SearchLocations(query));
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        if (state is SearchLoading) {
+        if (state.status == SearchStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is SearchLoaded) {
+        if (state.status == SearchStatus.loaded) {
           final res = state.locations;
           return ListView.builder(
             itemCount: res.isNotEmpty ? res.length : 0,

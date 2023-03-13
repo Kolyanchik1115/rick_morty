@@ -19,7 +19,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     required this.characterRepo,
     required this.locationRepo,
     required this.episodeRepo,
-  }) : super(SearchEmpty()) {
+  }) : super(SearchState()) {
+    
     on<SearchCharacters>(_onSearchPersons);
     on<SearchLocations>(_onSearchLocations);
     on<SearchEpisodes>(_onSearchEpisodes);
@@ -32,9 +33,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final searchPersons = await characterRepo
           .searchCharacter(event.personQuery)
           .timeout(const Duration(seconds: 3));
-      emit(SearchLoaded(persons: searchPersons));
+
+      emit(state.copyWith(persons: searchPersons, status: SearchStatus.loaded));
     } catch (_) {
-      emit(SearchError());
+      emit(state.copyWith(status: SearchStatus.error));
     }
   }
 
@@ -46,9 +48,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final searchLocations = await locationRepo
           .searchLocation(event.locationQuery)
           .timeout(const Duration(seconds: 3));
-      emit(SearchLoaded(locations: searchLocations));
+      emit(state.copyWith(
+        locations: searchLocations,
+        status: SearchStatus.loaded,
+      ));
     } catch (_) {
-      emit(SearchError());
+      emit(state.copyWith(status: SearchStatus.error));
     }
   }
 
@@ -60,9 +65,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final searchEpisodes = await episodeRepo
           .searchEpisode(event.episodeQuery)
           .timeout(const Duration(seconds: 3));
-      emit(SearchLoaded(episodes: searchEpisodes));
+      emit(state.copyWith(
+        episodes: searchEpisodes,
+        status: SearchStatus.loaded,
+      ));
     } catch (_) {
-      emit(SearchError());
+      emit(state.copyWith(status: SearchStatus.error));
     }
   }
 }

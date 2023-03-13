@@ -102,14 +102,14 @@ class CharacterListWidget extends StatelessWidget {
           List<CharacterEntity> results = [];
           bool isLoading = false;
 
-          if (state is CharacterLoading && state.isFirstFetch) {
+          if (state.status == CharacterStatus.loading && state.isFirstFetch) {
             return const CircularProgressIndicator();
           }
-          if (state is CharacterLoading) {
+          if (state.status == CharacterStatus.loading) {
             results = state.oldCharacter;
             isLoading = true;
           }
-          if (state is CharacterLoaded) {
+          if (state.status == CharacterStatus.loaded) {
             results = state.characterLoaded;
           }
 
@@ -120,7 +120,7 @@ class CharacterListWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     if (index < results.length) {
                       return Padding(
-                        padding: const EdgeInsets.only(left:15.0),
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: CharacterList(result: results[index]),
                       );
                     } else {
